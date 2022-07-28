@@ -1,1 +1,23 @@
+# Registrando variáveis
+vfr = []
+total = 0
+valorfat = [['sp', 67836.43], ['rj', 36678.66], ['mg', 29229.88], ['es', 27165.48], ['out', 19849.53]]
 
+# Loop para o total do faturamento
+for k in valorfat:
+
+    total += k[1]
+
+# Loop para calcular o percentual por estado dentro do valor total de faturamento
+for i in valorfat:
+
+    estado = i[0].upper()
+    valor = i[1]
+    calcperc = ((valor/total)*100)
+    vfr.append([estado, valor, calcperc])
+
+# Loop para imprimir o estado/porcentagem/total/faturamento mensal.
+for j in vfr:
+
+    percent = round(j[2], 2)
+    print(f'Porcentagem de {j[0]} é {percent}% em cima de um total {total}, seu faturamento mensal é de R$ {j[1]}')
