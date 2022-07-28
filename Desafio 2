@@ -1,0 +1,17 @@
+# Desafio Target S. pedindo para verificar se o número dado está na sequência fibonacci
+# (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...)
+
+# Codigo:
+def Fibonnaci():
+   a, b = 0, 1
+   c = 0
+   n = int(input('Qual o número você quer saber se está na tabela fibonacci? '))
+   while c < n:
+       c = a + b
+       a = b
+       b = c
+   if n == c:
+      print('O número {} faz parte da tabela Fibonacci'.format(n))
+   else:
+      print('O número {} não faz parte da tabela Fibonacci'.format(n))
+Fibonnaci()
