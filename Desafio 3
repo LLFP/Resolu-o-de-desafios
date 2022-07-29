@@ -1,5 +1,5 @@
 import json
-# Botar a lista em uma variável
+# Colocar a lista em uma variável
 caminho = 'c:\\users\\lucas\\desktop\\Target Desafio\\dados.json'
 
 def ler_dados(caminho):
