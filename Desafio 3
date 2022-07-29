@@ -1,1 +1,77 @@
+import json
+# Botar a lista em uma variável
+caminho = 'c:\\users\\lucas\\desktop\\Target Desafio\\dados.json'
 
+def ler_dados(caminho):
+    # Pode ser inscrito como dados.json caso já esteja no mesmo diretório que o IDE
+    with open(caminho, encoding='utf-8') as dadosj:
+        dados = json.load(dadosj)
+    return dados
+
+dados_json = ler_dados(caminho)
+
+# Retirar feriados e finais de semana (dias sem faturamento)
+def exc_valor_zero(dados_json):
+    valor_not_null = []
+    for i in dados_json:
+        if i['valor'] > float(0.0):
+            valor_not_null.append(i)
+    return valor_not_null
+
+dados_calcm = exc_valor_zero(dados_json)
+
+# Calculo do menor valor do faturamento
+def calc_valor_menor(dados_calcm):
+    nr = float(0.0)
+    m = float("inf")
+    for nr in dados_calcm:
+        if nr['valor'] < m:
+            m = nr['valor']
+            dia_menor = nr['dia']
+        menor_valor_mes = f'O menor valor do mês é {m} referente ao dia {dia_menor} '
+    return menor_valor_mes
+
+# Calculo do maior valor do faturamento
+def calc_valor_maior(dados_calcm):
+    pr = float(0.0)
+    n = 0.0
+    for pr in dados_calcm:
+        if pr['valor'] > n:
+            n = pr['valor']
+            dia_maior = pr['dia']
+        maior_valor_mes = f'O maior valor do mês é {n} referente ao dia {dia_maior} '
+    return maior_valor_mes
+
+# Calculo da média de faturamento do mês
+def calc_media_valor_mes(dados_calcm):
+    i = 0
+    lr = float(0.0)
+    cdmm = 0.0
+    for lr in dados_calcm:
+        cdmm += lr['valor']
+        i += 1
+    media_valor = cdmm / i
+    return media_valor
+
+# Separação dos dias que tem faturamento maior que a média no mês
+valor_media_dia = []
+def calc_media_valor(dados_calcm):
+    valor_media = calc_media_valor_mes(dados_calcm)
+    for lr in dados_calcm:
+        if lr['valor'] > valor_media:
+            valor_media_dia.append(lr)
+    return valor_media_dia
+
+# Criação de variáveis que usam as def's
+total_numero_faturamento = calc_media_valor(dados_calcm)
+total_total = round(calc_media_valor_mes(dados_calcm), 2)
+menor_valor = calc_valor_menor(dados_calcm)
+maior_valor = calc_valor_maior(dados_calcm)
+
+# Impressão do que foi pedido
+print(menor_valor)
+print(maior_valor)
+print(f'A media é R$ {total_total}')
+print('O número de dias em que acontece um faturamento maior que a média é: ')
+for tr in total_numero_faturamento:
+    print(f'Dia {tr["dia"]} com o faturamento no valor de R$ {round(tr["valor"], 2)}')
