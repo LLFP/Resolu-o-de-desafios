@@ -18,4 +18,3 @@ while i < c:
 
 # imprimindo a palavra e sua versão contrária
 print(f'A palavra {v} ao contrário é {h}')
-
